@@ -10,6 +10,7 @@ class DefaultSettings(BaseSettings):
         extra="ignore",
         frozen=True,
         env_nested_delimiter="__",
+        env_ignore_empty=True,  # Ignore empty environment variables
     )
 
 
@@ -74,6 +75,9 @@ class Settings(DefaultSettings):
     def parse_ollama_models(cls, v):
         """Parse comma-separated string into list of models."""
         if isinstance(v, str):
+            # Handle empty strings
+            if not v.strip():
+                return ["llama3.2:1b"]  # Return default
             return [model.strip() for model in v.split(",") if model.strip()]
         return v
 
