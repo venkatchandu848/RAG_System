@@ -15,6 +15,12 @@ RUN apt-get update && \
         libpq-dev \
         poppler-utils \
         tesseract-ocr \
+        libgl1 \
+        libglib2.0-0 \
+        libsm6 \
+        libxext6 \
+        libxrender-dev \
+        libgomp1 \
         && rm -rf /var/lib/apt/lists/*
 
 # Create airflow user with UID/GID 50000 for cross-platform compatibility
@@ -38,9 +44,37 @@ RUN pip install --no-cache-dir \
 COPY requirements-airflow.txt /tmp/requirements-airflow.txt
 RUN pip install --no-cache-dir -r /tmp/requirements-airflow.txt
 
+# Create entrypoint script directly in Dockerfile (avoids Windows line ending issues)
+RUN printf '#!/bin/bash\n\
+set -e\n\
+\n\
+echo "Cleaning up any existing Airflow processes..."\n\
+pkill -f "airflow webserver" || true\n\
+pkill -f "airflow scheduler" || true\n\
+rm -f /opt/airflow/airflow-webserver.pid\n\
+rm -f /opt/airflow/airflow-scheduler.pid\n\
+\n\
+sleep 2\n\
+\n\
+echo "Initializing Airflow database..."\n\
+airflow db init\n\
+\n\
+echo "Creating admin user..."\n\
+airflow users create \\\n\
+    --username admin \\\n\
+    --firstname Admin \\\n\
+    --lastname User \\\n\
+    --role Admin \\\n\
+    --email admin@example.com \\\n\
+    --password admin || echo "Admin user already exists"\n\
+\n\
+echo "Starting Airflow webserver and scheduler..."\n\
+airflow webserver --port 8080 --daemon &\n\
+airflow scheduler\n' > /entrypoint.sh && chmod +x /entrypoint.sh
+
 # Copy and set up entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 # Switch to airflow user and set working directory
 USER airflow
