@@ -1,10 +1,8 @@
-# The Mother of AI Project
-## Phase 1 RAG Systems: arXiv Paper Curator
+# RAG Systems: arXiv Paper Curator
 
 <div align="center">
-  <h3>A Learner-Focused Journey into Production RAG Systems</h3>
-  <p>Learn to build modern AI systems from the ground up through hands-on implementation</p>
-  <p>Master the most in-demand AI engineering skills: <strong>RAG (Retrieval-Augmented Generation)</strong></p>
+  <h3>Journey into Production RAG Systems</h3>
+  <p>Modern AI systems from the ground up through hands-on implementation</p>
 </div>
 
 <p align="center">
@@ -12,7 +10,6 @@
   <img src="https://img.shields.io/badge/FastAPI-0.115+-green.svg" alt="FastAPI">
   <img src="https://img.shields.io/badge/OpenSearch-2.19-orange.svg" alt="OpenSearch">
   <img src="https://img.shields.io/badge/Docker-Compose-blue.svg" alt="Docker">
-  <img src="https://img.shields.io/badge/Status-Week%207%20Advanced%20Features-brightgreen.svg" alt="Status">
 </p>
 
 </br>
@@ -23,31 +20,27 @@
   </a>
 </p>
 
-## 📖 About This Course
+## 📖 About This Project
 
-This is a **learner-focused project** where you'll build a complete research assistant system that automatically fetches academic papers, understands their content, and answers your research questions using advanced RAG techniques.
+This project implements a **complete research assistant system** designed to automate the curation and analysis of academic papers. It goes beyond simple RAG by implementing **Agentic workflows** that can reason, verify, and adapt their search strategies.
 
-**The arXiv Paper Curator** will teach you to build a **production-grade RAG system using industry best practices**. Unlike tutorials that jump straight to vector search, we follow the **professional path**: master keyword search foundations first, then enhance with vectors for hybrid retrieval.
+The system is built with **production-grade engineering practices**, prioritizing robust search foundations (BM25 + Vectors) before layering on generative capabilities.
 
-> **🎯 The Professional Difference:** We build RAG systems the way successful companies do - solid search foundations enhanced with AI, not AI-first approaches that ignore search fundamentals.
+### **✨ Key Features**
 
-By the end of this course, you'll have your own AI research assistant and the deep technical skills to build production RAG systems for any domain.
-
-### **🎓 What You'll Build**
-
-- **Week 1:** Complete infrastructure with Docker, FastAPI, PostgreSQL, OpenSearch, and Airflow
-- **Week 2:** Automated data pipeline fetching and parsing academic papers from arXiv  
-- **Week 3:** Production BM25 keyword search with filtering and relevance scoring
-- **Week 4:** Intelligent chunking + hybrid search combining keywords with semantic understanding
-- **Week 5:** **Complete RAG pipeline with local LLM, streaming responses, and Gradio interface**
-- **Week 6:** **Production monitoring with Langfuse tracing and Redis caching for optimized performance**
-- **Week 7:** **Agentic RAG with LangGraph and Telegram Bot for intelligent reasoning and mobile access**
+- **Infrastructure:** Docker, FastAPI, PostgreSQL, OpenSearch, and Airflow
+- **Data Pipeline:** Automated fetching and parsing of academic papers from arXiv using Docling
+- **Search:** Hybrid retrieval combining OpenSearch's BM25 keyword search with Semantic Vector search
+- **RAG Pipeline:** Local LLM integration (Ollama) with streaming responses and Gradio interface
+- **Observability:** Production monitoring with Langfuse tracing and Redis caching
+- **Agentic Workflow:** LangGraph-powered agents for query rewriting, document grading, and adaptive retrieval
+- **Interfaces:** Web UI (Gradio) and Telegram Bot integration
 
 ---
 
-## 🏗️ System Architecture Evolution
+## 🏗️ System Architecture
 
-### Week 7: Agentic RAG & Telegram Bot Integration
+### Agentic RAG & Telegram Bot Integration
 <div align="center">
   <img src="static/week7_telegram_and_agentic_ai.png" alt="Week 7 Telegram and Agentic AI Architecture" width="800">
   <p><em>Complete Week 7 architecture showing Telegram bot integration with the agentic RAG system</em></p>
@@ -72,7 +65,7 @@ User Query → Guardrail Node → [PROCEED or OUT_OF_SCOPE]
    Generate Answer Node → Final Response with Citations
 ```
 
-**Key Innovations in Week 7:**
+**Key Innovations:**
 - 🤖 **Intelligent Decision-Making**: Agents evaluate and adapt retrieval strategies
 - 🔍 **Document Grading**: Automatic relevance assessment with semantic evaluation
 - 🔄 **Query Rewriting**: Adaptive query refinement when results are insufficient
@@ -554,17 +547,6 @@ uv run pytest                 # Run tests
 - **Local Development:** $0 (everything runs locally)
 - **Optional Cloud APIs:** ~$2-5 for external LLM services (if chosen)
 
----
-
-<div align="center">
-  <h3>🎉 Ready to Start Your AI Engineering Journey?</h3>
-  <p><strong>Begin with the Week 1 setup notebook and build your first production RAG system!</strong></p>
-  
-  <p><em>For learners who want to master modern AI engineering</em></p>
-  <p><strong>Built with love by Jam With AI</strong></p>
-</div>
-
----
 
 ## 📄 License
 
