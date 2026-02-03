@@ -22,6 +22,7 @@ class OpenSearchClient:
 
         self.client = OpenSearch(
             hosts=[host],
+            http_auth = (settings.opensearch.username, settings.opensearch.password),
             use_ssl=False,
             verify_certs=False,
             ssl_show_warn=False,
@@ -97,21 +98,26 @@ class OpenSearchClient:
         """
         try:
             pipeline_id = HYBRID_RRF_PIPELINE["id"]
+            
+            # Check if exists using correct endpoint
+            exists = False
+            try:
+                self.client.transport.perform_request("GET", f"/_search/pipeline/{pipeline_id}")
+                exists = True
+            except Exception:
+                exists = False
 
-            if force:
+            if exists and not force:
+                logger.info(f"RRF pipeline already exists: {pipeline_id}")
+                return False
+
+            if exists and force:
                 try:
-                    self.client.ingest.get_pipeline(id=pipeline_id)
-                    self.client.ingest.delete_pipeline(id=pipeline_id)
+                    self.client.transport.perform_request("DELETE", f"/_search/pipeline/{pipeline_id}")
                     logger.info(f"Deleted existing RRF pipeline: {pipeline_id}")
                 except Exception:
                     pass
 
-            try:
-                self.client.ingest.get_pipeline(id=pipeline_id)
-                logger.info(f"RRF pipeline already exists: {pipeline_id}")
-                return False
-            except Exception:
-                pass
             pipeline_body = {
                 "description": HYBRID_RRF_PIPELINE["description"],
                 "phase_results_processors": HYBRID_RRF_PIPELINE["phase_results_processors"],
@@ -177,37 +183,176 @@ class OpenSearchClient:
         self,
         query: str,
         query_embedding: Optional[List[float]] = None,
-        size: int = 10,
+        size: int = 5,
         from_: int = 0,
         categories: Optional[List[str]] = None,
         latest: bool = False,
         use_hybrid: bool = True,
         min_score: float = 0.0,
+        collapse_by_paper: bool = True,
+        max_chunks_per_paper: int = 3,
     ) -> Dict[str, Any]:
         """Unified search method supporting BM25, vector, and hybrid modes.
 
         :param query: Text query for search
         :param query_embedding: Optional embedding for vector/hybrid search
-        :param size: Number of results to return
+        :param size: Number of results to return (papers to find if collapsing is True)
         :param from_: Offset for pagination
         :param categories: Optional category filter
         :param latest: Sort by date instead of relevance
         :param use_hybrid: If True and embedding provided, use hybrid search
         :param min_score: Minimum score threshold
+        :param collapse_by_paper: If True, group results by paper ID
+        :param max_chunks_per_paper: Number of chunks to retrieve per paper when collapsing
         :returns: Search results
         """
         try:
-            # If no embedding provided or hybrid disabled, use BM25 only
-            if not query_embedding or not use_hybrid:
-                return self._search_bm25_only(query=query, size=size, from_=from_, categories=categories, latest=latest)
+            # Build filters
+            filters = []
+            if categories:
+                filters.append({"terms": {"categories": categories}})
+            
+            # Base query construction
+            base_query = None
+            search_params = {}
 
-            # Use native OpenSearch hybrid search with RRF pipeline
-            return self._search_hybrid_native(
-                query=query, query_embedding=query_embedding, size=size, categories=categories, min_score=min_score
+            if use_hybrid and query_embedding:
+                # Hybrid Search (BM25 + k-NN)
+                base_query = {
+                    "hybrid": {
+                        "queries": [
+                            {
+                                "bool": {
+                                    "must": [{
+                                        "multi_match": {
+                                            "query": query,
+                                            "fields": ["chunk_text^3", "title^2", "abstract^1"]
+                                        }
+                                    }],
+                                    "filter": filters
+                                }
+                            },
+                            {
+                                "knn": {
+                                    "embedding": {
+                                        "vector": query_embedding,
+                                        "k": size * 2
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+                # Use RRF pipeline for score normalization
+                search_params["search_pipeline"] = HYBRID_RRF_PIPELINE["id"]
+            else:
+                # BM25 Only
+                base_query = {
+                    "bool": {
+                        "must": [{
+                            "multi_match": {
+                                "query": query,
+                                "fields": ["chunk_text^3", "title^2", "abstract^1"]
+                            }
+                        }],
+                        "filter": filters
+                    }
+                }
+
+            search_body = {
+                "size": size,
+                "from": from_,
+                "query": base_query,
+                "_source": {"excludes": ["embedding"]}
+            }
+
+            # --- FIELD COLLAPSING ---
+            # Hybrid search with RRF does not support field collapsing in OpenSearch < 2.x/Neural
+            # So we perform client-side collapsing for hybrid search
+            manual_collapse = False
+            if collapse_by_paper:
+                if use_hybrid and query_embedding:
+                     manual_collapse = True
+                     # Request more hits to allow for deduplication
+                     search_body["size"] = size * 5  
+                else:
+                    search_body["collapse"] = {
+                        "field": "arxiv_id",
+                        "inner_hits": {
+                            "name": "top_chunks",
+                            "size": max_chunks_per_paper,
+                            "sort": [{"_score": "desc"}],
+                            "_source": {"excludes": ["embedding"]}
+                        }
+                    }
+
+            # Execute search
+            response = self.client.search(
+                index=self.index_name,
+                body=search_body,
+                params=search_params
             )
+
+            results = {"total": response["hits"]["total"]["value"], "hits": []}
+            hits_to_process = []
+
+            if manual_collapse:
+                # Client-side collapsing for Hybrid/RRF
+                seen_papers = {}
+                for hit in response["hits"]["hits"]:
+                    pub_id = hit["_source"].get("arxiv_id")
+                    if pub_id not in seen_papers:
+                         seen_papers[pub_id] = []
+                    
+                    if len(seen_papers[pub_id]) < max_chunks_per_paper:
+                         seen_papers[pub_id].append(hit)
+                         # Only add to results if we haven't reached global size limit
+                         if len(hits_to_process) < size * max_chunks_per_paper: 
+                              hits_to_process.append(hit)
+                
+                # If we want to strictly enforce 'size' as number of papers:
+                hits_to_process = []
+                count_papers = 0
+                for pid, hits in seen_papers.items():
+                    hits_to_process.extend(hits)
+                    count_papers += 1
+                    if count_papers >= size:
+                        break
+                        
+                results["total"] = min(results["total"], len(hits_to_process)) # Approx
+
+            # Flatten results if collapsed (server-side)
+            elif collapse_by_paper and response["hits"]["total"]["value"] > 0:
+                for group_hit in response["hits"]["hits"]:
+                    inner_hits = group_hit.get("inner_hits", {}).get("top_chunks", {}).get("hits", {}).get("hits", [])
+                    hits_to_process.extend(inner_hits)
+                # Update total to reflect actual chunks returned
+                results["total"] = len(hits_to_process)
+            else:
+                hits_to_process = response["hits"]["hits"]
+
+            # Process hits into standard format
+            for hit in hits_to_process:
+                if hit["_score"] < min_score:
+                    continue
+
+                chunk = hit["_source"]
+                chunk["score"] = hit["_score"]
+                chunk["chunk_id"] = hit["_id"]
+
+                if "highlight" in hit:
+                    chunk["highlights"] = hit["highlight"]
+
+                results["hits"].append(chunk)
+
+            logger.info(f"Unified search (collapsed={collapse_by_paper}) returned {len(results['hits'])} chunks")
+            return results
 
         except Exception as e:
             logger.error(f"Unified search error: {e}")
+            if use_hybrid and query_embedding:
+                logger.warning("Hybrid search failed, falling back to pure vector search.")
+                return self.search_chunks_vector(query_embedding, size=size, categories=categories)
             return {"total": 0, "hits": []}
 
     def _search_bm25_only(

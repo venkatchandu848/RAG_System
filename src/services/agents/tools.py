@@ -25,7 +25,7 @@ def create_retriever_tool(
     """
 
     @tool
-    async def retrieve_papers(query: str) -> list[Document]:
+    async def retrieve_papers(query: str) -> str:
         """Search and return relevant arXiv research papers.
 
         Use this tool when the user asks about:
@@ -37,7 +37,7 @@ def create_retriever_tool(
         - Specific algorithms or models
 
         :param query: The search query describing what papers to find
-        :returns: List of relevant paper excerpts with metadata
+        :returns: JSON string of relevant papers with metadata and content
         """
         logger.info(f"Retrieving papers for query: {query[:100]}...")
         logger.debug(f"Search mode: {'hybrid' if use_hybrid else 'bm25'}, top_k: {top_k}")
@@ -56,15 +56,15 @@ def create_retriever_tool(
             use_hybrid=use_hybrid,
         )
 
-        # Convert SearchHit to LangChain Document
+        # Convert SearchHit to dictionaries
         documents = []
         hits = search_results.get("hits", [])
         logger.info(f"Found {len(hits)} documents from OpenSearch")
 
         for hit in hits:
-            doc = Document(
-                page_content=hit["chunk_text"],
-                metadata={
+            doc = {
+                "page_content": hit["chunk_text"],
+                "metadata": {
                     "arxiv_id": hit["arxiv_id"],
                     "title": hit.get("title", ""),
                     "authors": hit.get("authors", ""),
@@ -73,13 +73,14 @@ def create_retriever_tool(
                     "section": hit.get("section_name", ""),
                     "search_mode": "hybrid" if use_hybrid else "bm25",
                     "top_k": top_k,
-                },
-            )
+                }
+            }
             documents.append(doc)
 
-        logger.debug(f"Converted {len(documents)} hits to LangChain Documents")
+        logger.debug(f"Converted {len(documents)} hits to dicts")
         logger.info(f"✓ Retrieved {len(documents)} papers successfully")
 
-        return documents
+        import json
+        return json.dumps(documents)
 
     return retrieve_papers

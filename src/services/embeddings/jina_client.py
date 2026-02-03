@@ -92,6 +92,14 @@ class JinaEmbeddingsClient:
             logger.error(f"Unexpected error in embed_query: {e}")
             raise
 
+    async def embed_text(self, text: str) -> List[float]:
+        """Embed any text (alias for embed_query for compatibility).
+
+        :param text: Text to embed
+        :returns: Embedding vector
+        """
+        return await self.embed_query(text)
+
     async def close(self):
         """Close the HTTP client."""
         await self.client.aclose()

@@ -206,6 +206,65 @@ class LangfuseTracer:
                 logger.error(f"Error shutting down Langfuse: {e}")
 
     @contextmanager
+    def trace_rag_request(
+        self,
+        query: str,
+        user_id: Optional[str] = None,
+        session_id: Optional[str] = None,
+        metadata: Optional[Dict[str, Any]] = None,
+        tags: Optional[list[str]] = None,
+    ):
+        """
+        Create a root trace for a RAG request.
+        Yields the trace object.
+        """
+        if not self.client:
+            yield None
+            return
+
+        try:
+            trace = self.client.trace(
+                name="rag_query",
+                input={"query": query},
+                user_id=user_id,
+                session_id=session_id,
+                metadata=metadata,
+                tags=tags,
+            )
+            yield trace
+        except Exception as e:
+            logger.error(f"Error creating RAG trace: {e}")
+            yield None
+
+    def create_span(
+        self,
+        trace,
+        name: str,
+        input_data: Optional[Dict[str, Any]] = None,
+        metadata: Optional[Dict[str, Any]] = None,
+    ):
+        """Create a span attached to a parent trace."""
+        if not trace:
+            return None
+        
+        try:
+            # Check if trace object supports creating child spans
+            if hasattr(trace, "span"):
+                return trace.span(
+                    name=name,
+                    input=input_data,
+                    metadata=metadata or {}
+                )
+            else:
+                # If trace is an OTEL span or other object without .span(), we can't easily create a child here
+                # consistently without more context. For now, logging debug and skipping.
+                logger.debug(f"Trace object {type(trace)} does not support .span() - skipping nested span creation.")
+                return None
+        except Exception as e:
+            logger.error(f"Error creating span: {e}")
+            return None
+
+    @contextmanager
     def start_generation(
         self,
         name: str,

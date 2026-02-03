@@ -3,6 +3,7 @@ import logging
 from typing import Any, Dict, List, Optional
 
 import httpx
+from langchain_ollama import ChatOllama
 from src.config import Settings
 from src.exceptions import OllamaConnectionError, OllamaException, OllamaTimeoutError
 from src.schemas.ollama import RAGResponse
@@ -20,6 +21,22 @@ class OllamaClient:
         self.timeout = httpx.Timeout(float(settings.ollama_timeout))
         self.prompt_builder = RAGPromptBuilder()
         self.response_parser = ResponseParser()
+
+    def get_langchain_model(self, model: str = "llama3.2:1b", temperature: float = 0.0) -> ChatOllama:
+        """Get a LangChain-compatible Ollama chat model.
+        
+        Args:
+            model: Model name to use
+            temperature: Temperature for generation
+            
+        Returns:
+            ChatOllama instance configured for this client
+        """
+        return ChatOllama(
+            model=model,
+            base_url=self.base_url,
+            temperature=temperature,
+        )
 
     async def health_check(self) -> Dict[str, Any]:
         """

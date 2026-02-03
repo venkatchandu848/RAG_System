@@ -2,10 +2,11 @@ import logging
 import time
 from typing import Dict, List
 
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, ToolMessage
 from langgraph.runtime import Runtime
 
 from ..context import Context
+from ..models import SourceItem
 from ..prompts import GENERATE_ANSWER_PROMPT
 from ..state import AgentState
 from .utils import get_latest_context, get_latest_query
@@ -33,8 +34,81 @@ async def ainvoke_generate_answer_step(
     question = get_latest_query(state["messages"])
     context = get_latest_context(state["messages"])
 
+    # Extract sources from tool messages
+    relevant_sources = []
+    for msg in state["messages"]:
+        if isinstance(msg, ToolMessage) and msg.name == "retrieve_papers":
+            documents = []
+            
+            # Try to parse content as JSON first (new format from tools.py)
+            try:
+                import json
+                # Handle possible string/dict content
+                content_str = str(msg.content)
+                documents = json.loads(content_str)
+                # Ensure it's a list
+                if not isinstance(documents, list):
+                    documents = [documents]
+            except (json.JSONDecodeError, TypeError):
+                # Fallback to legacy parsing if not JSON (e.g. if tool node stringified Documents)
+                
+                # First check if artifact contains Document objects (Legacy)
+                if hasattr(msg, 'artifact') and msg.artifact:
+                    documents = msg.artifact if isinstance(msg.artifact, list) else [msg.artifact]
+                else:
+                    # Fallback: Parse content using regex
+                    try:
+                        import re
+                        content = str(msg.content)
+                        pattern = r"metadata=(\{[^}]+(?:\{[^}]+\}[^}]*)*\})"
+                        matches = re.finditer(pattern, content)
+                        for match in matches:
+                            import ast
+                            try:
+                                metadata = ast.literal_eval(match.group(1))
+                                documents.append({'metadata': metadata})
+                            except Exception: pass
+                    except Exception: pass
+            
+            # Extract metadata from Document objects or dicts
+            for doc in documents:
+                try:
+                    # Handle both Document objects and dict representations
+                    page_content = ""
+                    if hasattr(doc, 'metadata'):
+                        metadata = doc.metadata
+                        page_content = getattr(doc, 'page_content', "")
+                    elif isinstance(doc, dict) and 'metadata' in doc:
+                        metadata = doc['metadata']
+                        page_content = doc.get('page_content', "")
+                    else:
+                        continue
+                    
+                    # Process authors
+                    authors_raw = metadata.get("authors", [])
+                    if isinstance(authors_raw, str):
+                        authors_list = [a.strip() for a in authors_raw.split(",")]
+                    elif isinstance(authors_raw, list):
+                        authors_list = authors_raw
+                    else:
+                        authors_list = []
+
+                    source = SourceItem(
+                        arxiv_id=metadata.get("arxiv_id", ""),
+                        title=metadata.get("title", ""),
+                        authors=authors_list,
+                        relevance_score=metadata.get("score", 0.0),
+                        url=metadata.get("source", "") or metadata.get("source_url", ""),
+                        text=page_content,
+                    )
+                    relevant_sources.append(source)
+                except (AttributeError, KeyError, TypeError, ValueError) as e:
+                    logger.debug(f"Failed to extract document metadata: {e}")
+                    continue
+    
     # Count sources from relevant_sources
-    sources_count = len(state.get("relevant_sources", []))
+    sources_count = len(relevant_sources)
+    logger.info(f"Extracted {sources_count} sources from ToolMessages")
 
     if not context:
         context = "No relevant documents found."
@@ -125,4 +199,7 @@ async def ainvoke_generate_answer_step(
             )
             runtime.context.langfuse_tracer.end_span(span)
 
-    return {"messages": [AIMessage(content=answer)]}
+    return {
+        "messages": [AIMessage(content=answer)],
+        "relevant_sources": relevant_sources,
+    }

@@ -74,10 +74,18 @@ HYBRID_RRF_PIPELINE = {
     "description": "Post processor for hybrid RRF search",
     "phase_results_processors": [
         {
-            "score-ranker-processor": {
+            "normalization-processor": {
+                "normalization": {
+                    "technique": "rrf",
+                    "parameters": {
+                        "rank_constant": 60
+                    }
+                },
                 "combination": {
-                    "technique": "rrf",  # Reciprocal Rank Fusion
-                    "rank_constant": 60,  # Default k=60 for RRF formula: 1/(k+rank)
+                    "technique": "rrf",
+                    "parameters": {
+                        "rank_constant": 60
+                    }
                 }
             }
         }

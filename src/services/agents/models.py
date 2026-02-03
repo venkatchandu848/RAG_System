@@ -40,6 +40,7 @@ class SourceItem(BaseModel):
     authors: List[str] = Field(default_factory=list, description="List of authors")
     url: str = Field(description="Link to paper")
     relevance_score: float = Field(default=0.0, description="Relevance score from search")
+    text: str = Field(default="", description="Text content of the retrieved chunk")
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
@@ -49,6 +50,7 @@ class SourceItem(BaseModel):
             "authors": self.authors,
             "url": self.url,
             "relevance_score": self.relevance_score,
+            "text": self.text,
         }
 
 

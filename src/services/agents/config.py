@@ -23,7 +23,7 @@ class GraphConfig(BaseModel):
     """
 
     max_retrieval_attempts: int = 2
-    guardrail_threshold: int = 60
+    guardrail_threshold: int = 40  # Lowered from 60 for llama3.2:1b compatibility
     model: str = "llama3.2:1b"
     temperature: float = 0.0
     top_k: int = 3
