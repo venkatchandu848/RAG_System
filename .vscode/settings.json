@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.smoothScrolling": false,
+    "editor.inlineSuggest.experimental.showOnSuggestConflict": "always",
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    }
+}
