@@ -43,7 +43,7 @@ The system is built with **production-grade engineering practices**, prioritizin
 ### Agentic RAG & Telegram Bot Integration
 <div align="center">
   <img src="static/week7_telegram_and_agentic_ai.png" alt="Week 7 Telegram and Agentic AI Architecture" width="800">
-  <p><em>Complete Week 7 architecture showing Telegram bot integration with the agentic RAG system</em></p>
+  <p><em>Complete architecture showing Telegram bot integration with the agentic RAG system</em></p>
 </div>
 
 ### LangGraph Agentic RAG Workflow
@@ -106,23 +106,10 @@ docker compose up --build -d
 curl http://localhost:8000/health
 ```
 
-### **📚 Weekly Learning Path**
-
-| Week | Topic | Blog Post | Code Release |
-|------|-------|-----------|--------------|
-| **Week 0** | The Mother of AI project - 6 phases | [The Mother of AI project](https://jamwithai.substack.com/p/the-mother-of-ai-project) | - |
-| **Week 1** | Infrastructure Foundation | [The Infrastructure That Powers RAG Systems](https://jamwithai.substack.com/p/the-infrastructure-that-powers-rag) | [week1.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week1.0) |
-| **Week 2** | Data Ingestion Pipeline | [Building Data Ingestion Pipelines for RAG](https://jamwithai.substack.com/p/bringing-your-rag-system-to-life) | [week2.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week2.0) |
-| **Week 3** | OpenSearch ingestion & BM25 retrieval | [The Search Foundation Every RAG System Needs](https://jamwithai.substack.com/p/the-search-foundation-every-rag-system) | [week3.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week3.0) |
-| **Week 4** | **Chunking & Hybrid Search** | [The Chunking Strategy That Makes Hybrid Search Work](https://jamwithai.substack.com/p/chunking-strategies-and-hybrid-rag) | [week4.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week4.0) |
-| **Week 5** | **Complete RAG system** | [The Complete RAG System](https://jamwithai.substack.com/p/the-complete-rag-system) | [week5.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week5.0) |
-| **Week 6** | **Production monitoring & caching** | [Production-ready RAG: Monitoring & Caching](https://jamwithai.substack.com/p/production-ready-rag-monitoring-and) | [week6.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week6.0) |
-| **Week 7** | **Agentic RAG & Telegram Bot** | [Agentic RAG with LangGraph and Telegram](https://jamwithai.substack.com/p/agentic-rag-with-langgraph-and-telegram) | [week7.0](https://github.com/jamwithai/arxiv-paper-curator/releases/tag/week7.0) |
-
 **📥 Clone a specific week's release:**
 ```bash
 # Clone a specific week's code
-git clone --branch <WEEK_TAG> https://github.com/jamwithai/arxiv-paper-curator
+git clone --branch <WEEK_TAG> https://github.com/venkatchandu848/RAG_System
 cd arxiv-paper-curator
 uv sync
 docker compose down -v
@@ -177,11 +164,6 @@ docker compose up --build -d
 uv run jupyter notebook notebooks/week1/week1_setup.ipynb
 ```
 
-**Completion Guide:** Follow the [Week 1 notebook](notebooks/week1/week1_setup.ipynb) for hands-on setup and verification steps.
-
-### **📖 Deep Dive**
-**Blog Post:** [The Infrastructure That Powers RAG Systems](https://jamwithai.substack.com/p/the-infrastructure-that-powers-rag) - Detailed walkthrough and production insights
-
 ---
 
 ## 📚 Week 2: Data Ingestion Pipeline ✅
@@ -217,14 +199,11 @@ uv run jupyter notebook notebooks/week2/week2_arxiv_integration.ipynb
 
 **Completion Guide:** Follow the [Week 2 notebook](notebooks/week2/week2_arxiv_integration.ipynb) for hands-on implementation and verification steps.
 
-### **📖 Deep Dive**
-**Blog Post:** [Building Data Ingestion Pipelines for RAG](https://jamwithai.substack.com/p/bringing-your-rag-system-to-life) - arXiv API integration and PDF processing
-
 ---
 
 ## 📚 Week 3: Keyword Search First - The Critical Foundation
 
-**Building on Weeks 1-2 foundation:** Implement the keyword search foundation that professional RAG systems rely on.
+Implement the keyword search foundation that professional RAG systems rely on.
 
 ### **🎯 Learning Objectives**
 - Why keyword search is essential for RAG systems (foundation first approach)
@@ -255,14 +234,11 @@ uv run jupyter notebook notebooks/week3/week3_opensearch.ipynb
 
 **Completion Guide:** Follow the [Week 3 notebook](notebooks/week3/week3_opensearch.ipynb) for hands-on OpenSearch setup and BM25 search implementation.
 
-### **📖 Deep Dive**
-**Blog Post:** [The Search Foundation Every RAG System Needs](https://jamwithai.substack.com/p/the-search-foundation-every-rag-system) - Complete BM25 implementation with OpenSearch
-
 ---
 
 ## 📚 Week 4: Chunking & Hybrid Search - The Semantic Layer
 
-**Building on Week 3 foundation:** Add the semantic layer that makes search truly intelligent.
+Add the semantic layer that makes search truly intelligent.
 
 ### **🎯 Learning Objectives**
 - Section-based chunking with intelligent document segmentation
@@ -292,14 +268,11 @@ uv run jupyter notebook notebooks/week4/week4_hybrid_search.ipynb
 
 **Completion Guide:** Follow the [Week 4 notebook](notebooks/week4/week4_hybrid_search.ipynb) for hands-on implementation and verification steps.
 
-### **📖 Deep Dive**
-**Blog Post:** [The Chunking Strategy That Makes Hybrid Search Work](https://jamwithai.substack.com/p/chunking-strategies-and-hybrid-rag) - Production chunking and RRF fusion implementation
-
 ---
 
 ## 📚 Week 5: Complete RAG Pipeline with LLM Integration
 
-**Building on Week 4 hybrid search:** Add the LLM layer that turns search into intelligent conversation.
+Add the LLM layer that turns search into intelligent conversation.
 
 ### **🎯 Learning Objectives**
 - Local LLM integration with Ollama for complete data privacy
@@ -334,14 +307,11 @@ uv run python gradio_launcher.py
 
 **Completion Guide:** Follow the [Week 5 notebook](notebooks/week5/week5_complete_rag_system.ipynb) for hands-on LLM integration and RAG pipeline implementation.
 
-### **📖 Deep Dive**
-**Blog Post:** [The Complete RAG System](https://jamwithai.substack.com/p/the-complete-rag-system) - Complete RAG system with local LLM integration and optimization techniques
-
 ---
 
 ## 📚 Week 6: Production Monitoring and Caching
 
-**Building on Week 5 complete RAG system:** Add observability, performance optimization, and production-grade monitoring.
+Add observability, performance optimization, and production-grade monitoring.
 
 ### **🎯 Learning Objectives**
 - Langfuse integration for end-to-end RAG pipeline tracing
@@ -371,9 +341,6 @@ uv run jupyter notebook notebooks/week6/week6_cache_testing.ipynb
 ```
 
 **Completion Guide:** Follow the [Week 6 notebook](notebooks/week6/week6_cache_testing.ipynb) for hands-on Langfuse tracing and Redis caching implementation.
-
-### **📖 Deep Dive**
-**Blog Post:** [Production-ready RAG: Monitoring & Caching](https://jamwithai.substack.com/p/production-ready-rag-monitoring-and) - Production-ready RAG with monitoring and caching
 
 ---
 
@@ -411,10 +378,6 @@ uv run jupyter notebook notebooks/week7/week7_agentic_rag.ipynb
 ```
 
 **Completion Guide:** Follow the [Week 7 notebook](notebooks/week7/week7_agentic_rag.ipynb) for hands-on LangGraph agentic RAG and Telegram bot implementation.
-
-### **📖 Deep Dive**
-**Blog Post:** [Agentic RAG with LangGraph and Telegram](https://jamwithai.substack.com/p/agentic-rag-with-langgraph-and-telegram) - Building intelligent agents with decision-making, adaptive retrieval, and mobile access
-
 ---
 
 ## ⚙️ Configuration
@@ -458,6 +421,7 @@ arxiv-paper-curator/
 ├── src/                    # Main application code
 │   ├── routers/            # API endpoints (search, ask, papers)
 │   ├── services/           # Business logic (opensearch, ollama, agents, cache)
+│   ├── evaluation/         # RAG evaluation framework (data gen, metrics, runners)
 │   ├── models/             # Database models (SQLAlchemy)
 │   ├── schemas/            # Pydantic validation schemas
 │   └── config.py           # Environment configuration
@@ -465,6 +429,27 @@ arxiv-paper-curator/
 ├── airflow/                # Workflow orchestration (DAGs)
 ├── tests/                  # Test suite
 └── compose.yml             # Docker service orchestration
+```
+
+### **🧪 RAG Evaluation Framework**
+
+The project includes a comprehensive evaluation suite located in `src/evaluation/`. It provides end-to-end testing capabilities for RAG systems:
+
+- **Synthetic Data Generation**: LLM-based creation of diverse test queries (Complex, Reasoning, Multi-hop) from your own data.
+- **Metrics Library**:
+  - **Retrieval**: Precision@K, Recall@K, nDCG, MRR
+  - **Generation**: Faithfulness, Answer Relevancy, BERTScore
+  - **RAGAS Integration**: Context Precision, Recall, and adherence metrics
+  - **Agentic**: Guardrail precision, rewrite success rates, and tool usage tracking
+- **Reporting**: Generates interactive HTML dashboards and visualization plots.
+
+**Run Evaluation:**
+```bash
+# Generate test set
+python -m src.evaluation.generate_dataset
+
+# Run full evaluation
+python -m src.evaluation.run_evaluation
 ```
 
 ### **📡 API Endpoints Reference**
