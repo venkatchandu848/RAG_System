@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "total_queries": 8,
+    "query_types": {
+      "factual": 5,
+      "comparative": 2,
+      "multi_hop": 1
+    },
+    "difficulty": {
+      "easy": 5,
+      "medium": 2,
+      "hard": 1
+    }
+  },
+  "queries": [
+    {
+      "query_id": "2602.01482v1_factual_458",
+      "question": "The three-hinge gyrus (3HG) in the human brain is a single entity rather than multiple separate landmarks.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "82ac9981-3883-4362-b516-5e4c95a4b9ff"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.01482v1"
+      ],
+      "ideal_answer": "The three-hinge gyrus (3HG) in the human brain is a single entity rather than multiple separate landmarks.",
+      "context_used": "Cortical folding exhibits substantial inter-individual variability while preserving stable anatomical landmarks that enable fine-scale characterization of cortical organization. Among these, the three-hinge gyrus (3HG) serves as a key folding primitive, showing consistent topology yet meaningful variations in morphology, connectivity, and function. Existing landmark-based methods typically model each 3HG independently, ignoring that 3HGs form higher-order folding communities that capture mesoscale structure. This simplification weakens anatomical representation and makes one-to-one matching sensitive to positional variability and noise. We propose a spectral graph representation learning framework that models community-level folding units rather than isolated landmarks. Each 3HG is encoded using a dual-profile representation combining surface topology and structural connectivity. Subject-specific spectral clustering identifies coherent folding communities, followed by topological refin",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Community-Level Modeling of Gyral Folding Patterns for Robust and Anatomically Informed Individualized Brain Mapping",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2602.01474v1_factual_9293",
+      "question": "The 2602.01474v1 paper provides examples of legal infrastructure for transformative AI governance.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "776c08c6-27c5-4b6b-9f46-94079719334c"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.01474v1"
+      ],
+      "ideal_answer": "The paper proposes the creation of registration regimes for frontier models and registration and identification regimes for autonomous agents as examples of legal infrastructure for transformative AI governance.",
+      "context_used": "Most of our AI governance efforts focus on substance: what rules do we want in place? What limits or checks do we want to impose on AI development and deployment? But a key role for law is not only to establish substantive rules but also to establish legal and regulatory infrastructure to generate and implement rules. The transformative nature of AI calls especially for attention to building legal and regulatory frameworks. In this PNAS Perspective piece I review three examples I have proposed: the creation of registration regimes for frontier models; the creation of registration and identification regimes for autonomous agents; and the design of regulatory markets to facilitate a role for private companies to innovate and deliver AI regulatory services.",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Legal Infrastructure for Transformative AI Governance",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2602.00166v1_factual_682",
+      "question": "The DA-GRPO algorithm was proposed for regulating cloud assistance during continual learning in joint local language models and cloud offloading decisions.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "1d3a2207-1f06-43ba-a13b-2ac17b6f0af8"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.00166v1"
+      ],
+      "ideal_answer": "The DA-GRPO algorithm was proposed for regulating cloud assistance during continual learning in joint local language models and cloud offloading decisions.",
+      "context_used": "Locally deployed Small Language Models (SLMs) must continually support diverse tasks under strict memory and computation constraints, making selective reliance on cloud Large Language Models (LLMs) unavoidable. Regulating cloud assistance during continual learning is challenging, as naive reward-based reinforcement learning often yields unstable offloading behavior and exacerbates catastrophic forgetting as task distributions shift. We propose DA-GRPO, a dual-advantage extension of Group Relative Policy Optimization that incorporates cloud-usage constraints directly into advantage computation, avoiding fixed reward shaping and external routing models. This design enables the local model to jointly learn task competence and collaboration behavior, allowing cloud requests to emerge naturally during post-training while respecting a prescribed assistance budget. Experiments on mathematical reasoning and code generation benchmarks show that DA-GRPO improves post-switch accuracy, substantial",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Joint Continual Learning of Local Language Models and Cloud Offloading Decisions with Budget Constraints",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.22400v1_factual_6162",
+      "question": "What is established in the paper regarding the learnability of complex-valued Linear Dynamical Systems (CLDS)?",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "1c6b1dec-08db-446a-a4d4-5fe6b7748a8f"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.22400v1"
+      ],
+      "ideal_answer": "The effective quantum dimension $k^*$ is determined by the spectral bandwidth and memory horizon.",
+      "context_used": "Learning high-dimensional quantum systems is a fundamental challenge that notoriously suffers from the curse of dimensionality. We formulate the task of predicting quantum evolution in the linear response regime as a specific instance of learning a Complex-Valued Linear Dynamical System (CLDS) with sector-bounded eigenvalues -- a setting that also encompasses modern Structured State Space Models (SSMs). While traditional system identification attempts to reconstruct full system matrices (incurring exponential cost in the Hilbert dimension), we propose Quantum Spectral Filtering, a method that shifts the goal to improper dynamic learning. Leveraging the optimal concentration properties of the Slepian basis, we prove that the learnability of such systems is governed strictly by an effective quantum dimension $k^*$, determined by the spectral bandwidth and memory horizon. This result establishes that complex-valued LDSs can be learned with sample and computational complexity independent o",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Spectral Filtering for Learning Quantum Dynamics",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.21124v1_factual_7220",
+      "question": "PhaseCoder takes raw multichannel audio as input and produces robust spatial embeddings using microphone coordinates.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "afb3db21-5b33-4411-87c1-ee691b37915a"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.21124v1"
+      ],
+      "ideal_answer": "A specific factual question answerable from this section",
+      "context_used": "Current multimodal LLMs process audio as a mono stream, ignoring the rich spatial information essential for embodied AI. Existing spatial audio models, conversely, are constrained to fixed microphone geometries, preventing deployment across diverse devices. We present PhaseCoder, a transformer-only spatial audio encoder that is agnostic to microphone geometry. PhaseCoder takes raw multichannel audio and microphone coordinates as inputs to perform localization and produces robust spatial embeddings. We demonstrate that Gemma 3n LLM can be fine-tuned to reason over \"Spatial Audio Tokens\" produced by PhaseCoder. We show our encoder achieves state-of-the-art results on microphone-invariant localization benchmarks and, for the first time, enables an LLM to perform complex spatial reasoning and targeted transcription tasks from an arbitrary microphone array.",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "PhaseCoder: Microphone Geometry-Agnostic Spatial Audio Understanding for Multimodal LLMs",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "comparative_2218",
+      "question": "In what ways do community-level modeling and legal infrastructure for AI governance differ in their approaches to capturing cortical folding patterns? Provide specific examples from Papers 1 and 2 to support your response.",
+      "query_type": "comparative",
+      "relevant_paper_ids": [
+        "82ac9981-3883-4362-b516-5e4c95a4b9ff",
+        "776c08c6-27c5-4b6b-9f46-94079719334c"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.01482v1",
+        "2602.01474v1"
+      ],
+      "ideal_answer": "{\"Comparing the use of landmark-based methods in Papers 1 and 2, it appears that Papers 1 highlights the importance of anatomical landmarks in capturing stable, yet meaningful variations in cortical organization. In contrast, Paper 2 emphasizes the need for legal infrastructure to establish rules and checks that can influence AI development and deployment. A synthesis of these findings suggests that Papers 1 and 2 advocate for a more integrated approach that considers both the computational modeling of folding patterns (Papers 1) and regulatory frameworks (Paper 2).\", ",
+      "context_used": "Paper 1:\nTitle: Community-Level Modeling of Gyral Folding Patterns for Robust and Anatomically Informed Individualized Brain Mapping\nID: 2602.01482v1\nAbstract: Cortical folding exhibits substantial inter-individual variability while preserving stable anatomical landmarks that enable fine-scale characterization of cortical organization. Among these, the three-hinge gyrus (3HG) serves as a key folding primitive, showing consistent topology yet meaningful variations in morphology, connectivity, and function. Existing landmark-based methods typically model each 3HG independently, ignoring that 3HGs form higher-order folding communities that capture mesosca\n\nPaper 2:\nTitle: Legal Infrastructure for Transformative AI Governance\nID: 2602.01474v1\nAbstract: Most of our AI governance efforts focus on substance: what rules do we want in place? What limits or checks do we want to impose on AI development and deployment? But a key role for law is not only to establish substantive rules but also to ",
+      "difficulty": "medium",
+      "metadata": {
+        "paper_titles": [
+          "Community-Level Modeling of Gyral Folding Patterns for Robust and Anatomically Informed Individualized Brain Mapping",
+          "Legal Infrastructure for Transformative AI Governance"
+        ],
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "comparative_2932",
+      "question": "To address the challenges of continual learning in language models under cloud offloading constraints, how do you propose to balance the need for local deployment (e.g., Small Language Models) with the benefits of cloud assistance (e.g., Large Language Models)?",
+      "query_type": "comparative",
+      "relevant_paper_ids": [
+        "1d3a2207-1f06-43ba-a13b-2ac17b6f0af8",
+        "1c6b1dec-08db-446a-a4d4-5fe6b7748a8f"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.00166v1",
+        "2601.22400v1"
+      ],
+      "ideal_answer": "{\"proposed approach involves integrating cloud-based LLMs into a hybrid system that leverages both local and remote models based on task-specific prioritization, ensuring stable offloading behavior while minimizing forgetting. This balances the need for efficient memory usage with the benefits of scaling to complex tasks.},",
+      "context_used": "Paper 1:\nTitle: Joint Continual Learning of Local Language Models and Cloud Offloading Decisions with Budget Constraints\nID: 2602.00166v1\nAbstract: Locally deployed Small Language Models (SLMs) must continually support diverse tasks under strict memory and computation constraints, making selective reliance on cloud Large Language Models (LLMs) unavoidable. Regulating cloud assistance during continual learning is challenging, as naive reward-based reinforcement learning often yields unstable offloading behavior and exacerbates catastrophic forgetting as task distributions shift. We propose DA-GRPO, a dual-advantage extension of Group Relativ\n\nPaper 2:\nTitle: Spectral Filtering for Learning Quantum Dynamics\nID: 2601.22400v1\nAbstract: Learning high-dimensional quantum systems is a fundamental challenge that notoriously suffers from the curse of dimensionality. We formulate the task of predicting quantum evolution in the linear response regime as a specific instance of learning a Complex-V",
+      "difficulty": "medium",
+      "metadata": {
+        "paper_titles": [
+          "Joint Continual Learning of Local Language Models and Cloud Offloading Decisions with Budget Constraints",
+          "Spectral Filtering for Learning Quantum Dynamics"
+        ],
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2602.01482v1_multihop_2729",
+      "question": "Given the information provided in the paper about community-level modeling of gyral folding patterns for robust and anatomically informed individualized brain mapping, propose a method that explicitly models community-level folding units rather than isolated landmarks.",
+      "query_type": "multi_hop",
+      "relevant_paper_ids": [
+        "82ac9981-3883-4362-b516-5e4c95a4b9ff"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.01482v1"
+      ],
+      "ideal_answer": "A spectral graph representation learning framework is proposed which characterizes each 3HG using a dual-profile representation integrating its topological surface context and structural connectivity fingerprint. A subject-specific spectral clustering module identifies coherent folding communities, followed by a topological refinement step to ensure anatomical continuity. Joint Morphological-Geometric Matching (JMGM) is introduced to align community-level representations across more than 1,000 Human Connectome Project subjects.",
+      "context_used": "## Community-Level Modeling of Gyral Folding Patterns for Robust and Anatomically Informed Individualized Brain Mapping\n\nMinheng Chen a , Tong Chen a , Yan Zhuang a , Chao Cao a , Jing Zhang a , Tianming Liu b , Lu Zhang ∗ c , Dajiang Zhu ∗ a a Department of Computer Science and Engineering, University of Texas at Arlington, Arlington, 76019, TX, United States\n\nb School of Computing, University of Georgia, Athens , 30602, GA, United States c Department of Computer Science, Indiana University Indianapolis, Indianapolis, 46202, IN, United States\n\n## Abstract\n\nCortical folding shows substantial inter-individual variability yet contains stable anatomical landmarks that can support fine-scale characterization of cortical organization. Among these landmarks, the three-hinge gyrus (3HG) is a particularly informative folding primitive, exhibiting strong intra-species consistency alongside meaningful variations in morphology, connectivity, and functional relevance. However, prior landmark-based",
+      "difficulty": "hard",
+      "metadata": {
+        "paper_title": "Community-Level Modeling of Gyral Folding Patterns for Robust and Anatomically Informed Individualized Brain Mapping",
+        "method": "llm_generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "total_queries": 3,
+    "query_types": {
+      "factual": 3,
+      "comparative": 0,
+      "multi_hop": 0
+    },
+    "difficulty": {
+      "easy": 3,
+      "medium": 0,
+      "hard": 0
+    }
+  },
+  "queries": [
+    {
+      "query_id": "2602.01482v1_factual_458",
+      "question": "The three-hinge gyrus (3HG) in the human brain is a single entity rather than multiple separate landmarks.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "82ac9981-3883-4362-b516-5e4c95a4b9ff"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.01482v1"
+      ],
+      "ideal_answer": "The three-hinge gyrus (3HG) in the human brain is a single entity rather than multiple separate landmarks.",
+      "context_used": "Cortical folding exhibits substantial inter-individual variability while preserving stable anatomical landmarks that enable fine-scale characterization of cortical organization. Among these, the three-hinge gyrus (3HG) serves as a key folding primitive, showing consistent topology yet meaningful variations in morphology, connectivity, and function. Existing landmark-based methods typically model each 3HG independently, ignoring that 3HGs form higher-order folding communities that capture mesoscale structure. This simplification weakens anatomical representation and makes one-to-one matching sensitive to positional variability and noise. We propose a spectral graph representation learning framework that models community-level folding units rather than isolated landmarks. Each 3HG is encoded using a dual-profile representation combining surface topology and structural connectivity. Subject-specific spectral clustering identifies coherent folding communities, followed by topological refin",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Community-Level Modeling of Gyral Folding Patterns for Robust and Anatomically Informed Individualized Brain Mapping",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2602.01474v1_factual_9293",
+      "question": "The 2602.01474v1 paper provides examples of legal infrastructure for transformative AI governance.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "776c08c6-27c5-4b6b-9f46-94079719334c"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.01474v1"
+      ],
+      "ideal_answer": "The paper proposes the creation of registration regimes for frontier models and registration and identification regimes for autonomous agents as examples of legal infrastructure for transformative AI governance.",
+      "context_used": "Most of our AI governance efforts focus on substance: what rules do we want in place? What limits or checks do we want to impose on AI development and deployment? But a key role for law is not only to establish substantive rules but also to establish legal and regulatory infrastructure to generate and implement rules. The transformative nature of AI calls especially for attention to building legal and regulatory frameworks. In this PNAS Perspective piece I review three examples I have proposed: the creation of registration regimes for frontier models; the creation of registration and identification regimes for autonomous agents; and the design of regulatory markets to facilitate a role for private companies to innovate and deliver AI regulatory services.",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Legal Infrastructure for Transformative AI Governance",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2602.00166v1_factual_682",
+      "question": "The DA-GRPO algorithm was proposed for regulating cloud assistance during continual learning in joint local language models and cloud offloading decisions.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "1d3a2207-1f06-43ba-a13b-2ac17b6f0af8"
+      ],
+      "relevant_arxiv_ids": [
+        "2602.00166v1"
+      ],
+      "ideal_answer": "The DA-GRPO algorithm was proposed for regulating cloud assistance during continual learning in joint local language models and cloud offloading decisions.",
+      "context_used": "Locally deployed Small Language Models (SLMs) must continually support diverse tasks under strict memory and computation constraints, making selective reliance on cloud Large Language Models (LLMs) unavoidable. Regulating cloud assistance during continual learning is challenging, as naive reward-based reinforcement learning often yields unstable offloading behavior and exacerbates catastrophic forgetting as task distributions shift. We propose DA-GRPO, a dual-advantage extension of Group Relative Policy Optimization that incorporates cloud-usage constraints directly into advantage computation, avoiding fixed reward shaping and external routing models. This design enables the local model to jointly learn task competence and collaboration behavior, allowing cloud requests to emerge naturally during post-training while respecting a prescribed assistance budget. Experiments on mathematical reasoning and code generation benchmarks show that DA-GRPO improves post-switch accuracy, substantial",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Joint Continual Learning of Local Language Models and Cloud Offloading Decisions with Budget Constraints",
+        "method": "llm_generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "total_queries": 9,
+    "query_types": {
+      "factual": 5,
+      "comparative": 3,
+      "multi_hop": 1
+    },
+    "difficulty": {
+      "easy": 5,
+      "medium": 1,
+      "hard": 1
+    }
+  },
+  "queries": [
+    {
+      "query_id": "2601.18796v1_factual_2763",
+      "question": "The Embedding Language Model (ELM) architecture was developed in this paper to align Large Language Models to embeddings of clinical trials.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "c49cb690-23ed-4b95-ab43-0b578d59566c"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18796v1"
+      ],
+      "ideal_answer": "The Embedding Language Model (ELM) architecture was developed in this paper to align Large Language Models to embeddings of clinical trials.",
+      "context_used": "Text embeddings have become an essential part of a variety of language applications. However, methods for interpreting, exploring and reversing embedding spaces are limited, reducing transparency and precluding potentially valuable generative use cases. In this work, we align Large Language Models to embeddings of clinical trials using the recently reported Embedding Language Model (ELM) method. We develop an open-source, domain-agnostic ELM architecture and training framework, design training tasks for clinical trials, and introduce an expert-validated synthetic dataset. We then train a series of ELMs exploring the impact of tasks and training regimes. Our final model, ctELM, can accurately describe and compare unseen clinical trials from embeddings alone and produce plausible clinical trials from novel vectors. We further show that generated trial abstracts are responsive to moving embeddings along concept vectors for age and sex of study subjects. Our public ELM implementation and e",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "ctELM: Decoding and Manipulating Embeddings of Clinical Trials with Embedding Language Models",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.18791v1_factual_4660",
+      "question": "BPE segmentation aligns with morpheme boundaries in languages where F1 = 0.34 across all examined languages.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "553839ec-5c15-4807-8527-0783bf2357be"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18791v1"
+      ],
+      "ideal_answer": "0.34",
+      "context_used": "We present a large-scale comparative study of 242 Latin and Cyrillic-script languages using subword-based methodologies. By constructing 'glottosets' from Wikipedia lexicons, we introduce a framework for simultaneous cross-linguistic comparison via Byte-Pair Encoding (BPE). Our approach utilizes rank-based subword vectors to analyze vocabulary overlap, lexical divergence, and language similarity at scale. Evaluations demonstrate that BPE segmentation aligns with morpheme boundaries 95% better than random baseline across 15 languages (F1 = 0.34 vs 0.15). BPE vocabulary similarity correlates significantly with genetic language relatedness (Mantel r = 0.329, p < 0.001), with Romance languages forming the tightest cluster (mean distance 0.51) and cross-family pairs showing clear separation (0.82). Analysis of 26,939 cross-linguistic homographs reveals that 48.7% receive different segmentations across related languages, with variation correlating to phylogenetic distance. Our results provid",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Subword-Based Comparative Linguistics across 242 Languages Using Wikipedia Glottosets",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.18785v1_factual_8909",
+      "question": "What type of story schema transformations does Dramamancer use to enable authorial intent and player agency?",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "3c9b27c3-2a79-47e8-bb0e-bee10af3e8d1"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18785v1"
+      ],
+      "ideal_answer": "The correct answer extracted from the text: Story schemas transformed into a hybrid narrative structure.",
+      "context_used": "The rise of Large Language Models (LLMs) has enabled a new paradigm for bridging authorial intent and player agency in interactive narrative. We consider this paradigm through the example of Dramamancer, a system that uses an LLM to transform author-created story schemas into player-driven playthroughs. This extended abstract outlines some design techniques and evaluation considerations associated with this system.",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Design Techniques for LLM-Powered Interactive Storytelling: A Case Study of the Dramamancer System",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.18783v1_factual_4918",
+      "question": "The framework learns a continuous set of policies explicitly representing trade-offs between safety, energy efficiency, and operational costs in highway driving.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "9e44da94-c063-4feb-82d3-6277959e0536"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18783v1"
+      ],
+      "ideal_answer": "proposed approach",
+      "context_used": "Balancing safety, efficiency, and operational costs in highway driving poses a challenging decision-making problem for heavy-duty vehicles. A central difficulty is that conventional scalar reward formulations, obtained by aggregating these competing objectives, often obscure the structure of their trade-offs. We present a Proximal Policy Optimization based multi-objective reinforcement learning framework that learns a continuous set of policies explicitly representing these trade-offs and evaluates it on a scalable simulation platform for tactical decision making in trucks. The proposed approach learns a continuous set of Pareto-optimal policies that capture the trade-offs among three conflicting objectives: safety, quantified in terms of collisions and successful completion; energy efficiency and time efficiency, quantified using energy cost and driver cost, respectively. The resulting Pareto frontier is smooth and interpretable, enabling flexibility in choosing driving behavior along",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Multi-Objective Reinforcement Learning for Efficient Tactical Decision Making for Trucks in Highway Traffic",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.18045v1_factual_5573",
+      "question": "Topological features are encoded through finite differentiable representations of persistence diagrams (PDs) in the proposed PIs-Regressor module.",
+      "query_type": "factual",
+      "relevant_paper_ids": [
+        "b594eef3-d52b-4a91-a268-88e11a97b318"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18045v1"
+      ],
+      "ideal_answer": "finite differentiable representations of persistence diagrams",
+      "context_used": "Segmenting curvilinear structures in medical images is essential for analyzing morphological patterns in clinical applications. Integrating topological properties, such as connectivity, improves segmentation accuracy and consistency. However, extracting and embedding such properties - especially from Persistence Diagrams (PD) - is challenging due to their non-differentiability and computational cost. Existing approaches mostly encode topology through handcrafted loss functions, which generalize poorly across tasks. In this paper, we propose PIs-Regressor, a simple yet effective module that learns persistence image (PI) - finite, differentiable representations of topological features - directly from data. Together with Topology SegNet, which fuses these features in both downsampling and upsampling stages, our framework integrates topology into the network architecture itself rather than auxiliary losses. Unlike existing methods that depend heavily on handcrafted loss functions, our appr",
+      "difficulty": "easy",
+      "metadata": {
+        "paper_title": "Leveraging Persistence Image to Enhance Robustness and Performance in Curvilinear Structure Segmentation",
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "comparative_6785",
+      "question": "{\"pap1.abstract\": \"In this work, we develop an open-source, domain-agnostic ELM architecture and training framework.\",\"pap2.abstract\": \"By constructing 'glottosets' from Wikipedia lexicons, we introduce a framework for simultaneous cross-linguistic comparison via Byte-Pair Encoding (BPE).\",\"ideal_answer\": \"An answer that synthesizes information from the papers to discuss the effectiveness of ELM in aligning large language models with clinical trial embeddings and its comparative advantages over subword-based approaches like BPE.\"}",
+      "query_type": "comparative",
+      "relevant_paper_ids": [
+        "c49cb690-23ed-4b95-ab43-0b578d59566c",
+        "553839ec-5c15-4807-8527-0783bf2357be"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18796v1",
+        "2601.18791v1"
+      ],
+      "ideal_answer": "{\"pap1.abstract\": \"In this work, we develop an open-source, domain-agnostic ELM architecture and training framework.\",\"pap2.abstract\": \"By constructing 'glottosets' from Wikipedia lexicons, we introduce a framework for simultaneous cross-linguistic comparison via Byte-Pair Encoding (BPE).\",\"difficulty\": \"medium|hard\"}",
+      "context_used": "Paper 1:\nTitle: ctELM: Decoding and Manipulating Embeddings of Clinical Trials with Embedding Language Models\nID: 2601.18796v1\nAbstract: Text embeddings have become an essential part of a variety of language applications. However, methods for interpreting, exploring and reversing embedding spaces are limited, reducing transparency and precluding potentially valuable generative use cases. In this work, we align Large Language Models to embeddings of clinical trials using the recently reported Embedding Language Model (ELM) method. We develop an open-source, domain-agnostic ELM architecture and training framework, design training t\n\nPaper 2:\nTitle: Subword-Based Comparative Linguistics across 242 Languages Using Wikipedia Glottosets\nID: 2601.18791v1\nAbstract: We present a large-scale comparative study of 242 Latin and Cyrillic-script languages using subword-based methodologies. By constructing 'glottosets' from Wikipedia lexicons, we introduce a framework for simultaneous cross-linguisti",
+      "difficulty": "medium|hard",
+      "metadata": {
+        "paper_titles": [
+          "ctELM: Decoding and Manipulating Embeddings of Clinical Trials with Embedding Language Models",
+          "Subword-Based Comparative Linguistics across 242 Languages Using Wikipedia Glottosets"
+        ],
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "comparative_2640",
+      "question": "Comparing the effectiveness of LLM-powered interactive storytelling in bridging authorial intent and player agency using Dramamancer (Paper 1) versus a multi-objective reinforcement learning framework for highway traffic (Paper 2)",
+      "query_type": "comparative",
+      "relevant_paper_ids": [
+        "3c9b27c3-2a79-47e8-bb0e-bee10af3e8d1",
+        "9e44da94-c063-4feb-82d3-6277959e0536"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18785v1",
+        "2601.18783v1"
+      ],
+      "ideal_answer": "{\"This comparative analysis reveals that while both approaches can effectively bridge the gap between authorial intent and player agency, the Proximal Policy Optimization based multi-objective reinforcement learning framework proposed in Paper 2 exhibits greater efficiency in balancing safety, efficiency, and operational costs compared to Dramamancer. However, it also raises questions about the scalability of this approach for large-scale highway traffic scenarios. Further research is needed to fully understand its applicability and limitations.\"}",
+      "context_used": "Paper 1:\nTitle: Design Techniques for LLM-Powered Interactive Storytelling: A Case Study of the Dramamancer System\nID: 2601.18785v1\nAbstract: The rise of Large Language Models (LLMs) has enabled a new paradigm for bridging authorial intent and player agency in interactive narrative. We consider this paradigm through the example of Dramamancer, a system that uses an LLM to transform author-created story schemas into player-driven playthroughs. This extended abstract outlines some design techniques and evaluation considerations associated with this system.\n\nPaper 2:\nTitle: Multi-Objective Reinforcement Learning for Efficient Tactical Decision Making for Trucks in Highway Traffic\nID: 2601.18783v1\nAbstract: Balancing safety, efficiency, and operational costs in highway driving poses a challenging decision-making problem for heavy-duty vehicles. A central difficulty is that conventional scalar reward formulations, obtained by aggregating these competing objectives, often obscure the structu",
+      "difficulty": "medium|hard",
+      "metadata": {
+        "paper_titles": [
+          "Design Techniques for LLM-Powered Interactive Storytelling: A Case Study of the Dramamancer System",
+          "Multi-Objective Reinforcement Learning for Efficient Tactical Decision Making for Trucks in Highway Traffic"
+        ],
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "comparative_6570",
+      "question": "How does the use of Persistence Diagrams (PD) in Paper 1 address the limitations of existing approaches for extracting and encoding spatial information?",
+      "query_type": "comparative",
+      "relevant_paper_ids": [
+        "b594eef3-d52b-4a91-a268-88e11a97b318",
+        "28c817f8-6840-4eb4-b702-7a6aa55ed8a9"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18045v1",
+        "2601.18037v1"
+      ],
+      "ideal_answer": "{\"Comparing PD from Paper 1 with SpatialEmb in Paper 2: Both methods leverage spatial information, but PD provides a more robust and efficient way to extract topological properties, whereas SpatialEmb focuses on single-channel multi-speaker ASR. The integration of both approaches can lead to improved ASR performance by leveraging the complementary strengths of different techniques.}\", ",
+      "context_used": "Paper 1:\nTitle: Leveraging Persistence Image to Enhance Robustness and Performance in Curvilinear Structure Segmentation\nID: 2601.18045v1\nAbstract: Segmenting curvilinear structures in medical images is essential for analyzing morphological patterns in clinical applications. Integrating topological properties, such as connectivity, improves segmentation accuracy and consistency. However, extracting and embedding such properties - especially from Persistence Diagrams (PD) - is challenging due to their non-differentiability and computational cost. Existing approaches mostly encode topology through handcrafted loss functions, which generalize \n\nPaper 2:\nTitle: SpatialEmb: Extract and Encode Spatial Information for 1-Stage Multi-channel Multi-speaker ASR on Arbitrary Microphone Arrays\nID: 2601.18037v1\nAbstract: Spatial information is a critical clue for multi-channel multi-speaker target speech recognition. Most state-of-the-art multi-channel Automatic Speech Recognition (ASR) systems extr",
+      "difficulty": "medium",
+      "metadata": {
+        "paper_titles": [
+          "Leveraging Persistence Image to Enhance Robustness and Performance in Curvilinear Structure Segmentation",
+          "SpatialEmb: Extract and Encode Spatial Information for 1-Stage Multi-channel Multi-speaker ASR on Arbitrary Microphone Arrays"
+        ],
+        "method": "llm_generated"
+      }
+    },
+    {
+      "query_id": "2601.18796v1_multihop_9962",
+      "question": "The paper discusses how to align Large Language Models to clinical trial embeddings using the Embedding Language Model (ELM) method, and then uses ELMs to decode and manipulate these embeddings for generating abstracts based on patient demographics.",
+      "query_type": "multi_hop",
+      "relevant_paper_ids": [
+        "c49cb690-23ed-4b95-ab43-0b578d59566c"
+      ],
+      "relevant_arxiv_ids": [
+        "2601.18796v1"
+      ],
+      "ideal_answer": "{\"To effectively use ctELM for generating trial abstracts, one must first understand the nuances of embedding spaces and how they relate to clinical trials. This requires reasoning across multiple sections of the paper, including introduction, methods, results, discussion, and conclusion. The answer should demonstrate an understanding of how ELMs can be used to manipulate embeddings and produce plausible trial abstracts based on demographic factors such as age and sex. Furthermore, it should show the ability to connect information from different parts of the text to provide a coherent explanation for why generated abstracts are responsive to moving embeddings along concept vectors for these variables.\", ",
+      "context_used": "## ctELM: Decoding and Manipulating Embeddings of Clinical Trials with Embedding Language Models\n\nBrian Ondov*, Chia-Hsuan Chang*, Yujia Zhou, Mauro Giuffrè and Hua Xu\n\nDepartment of Biomedical Informatics &amp; Data Science Yale School of Medicine\n\nNew Haven, CT, USA\n\n{brian.ondov,chia-hsuan.chang,yujia.zhou,mauro.giuffre,hua.xu}@yale.edu\n\n## Abstract\n\nText embeddings have become an essential part of a variety of language applications. However, methods for interpreting, exploring and reversing embedding spaces are limited, reducing transparency and precluding potentially valuable generative use cases. In this work, we align Large Language Models to embeddings of clinical trials using the recently reported Embedding Language Model (ELM) method. We develop an open-source, domain-agnostic ELM architecture and training framework, design training tasks for clinical trials, and introduce an expert-validated synthetic dataset. We then train a series of ELMs exploring the impact of tasks and ",
+      "difficulty": "hard",
+      "metadata": {
+        "paper_title": "ctELM: Decoding and Manipulating Embeddings of Clinical Trials with Embedding Language Models",
+        "method": "llm_generated"
+      }
+    }
+  ]
+}
